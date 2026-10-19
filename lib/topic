@@ -1,0 +1,19 @@
+class Formula {
+  final String name, expr, note;
+  const Formula(this.name, this.expr, this.note);
+}
+
+class Topic {
+  final String title, semester, summary;
+  final int colorValue;
+  final List<String> keyPoints;
+  final List<Formula> formulas;
+  const Topic({
+    required this.title,
+    required this.semester,
+    required this.summary,
+    required this.colorValue,
+    required this.keyPoints,
+    required this.formulas,
+  });
+}
