@@ -1,0 +1,153 @@
+import '../models/topic.dart';
+
+const List<Topic> materi = [
+  Topic(
+    title: 'Neraca Massa & Energi',
+    semester: 'Semester 3',
+    colorValue: 0xFF1E88E5,
+    summary:
+        'Dasar semua perhitungan proses: hukum kekekalan massa dan energi pada sistem terbuka/tertutup, steady-state maupun unsteady-state.',
+    keyPoints: [
+      'Tentukan basis perhitungan dan batas sistem dahulu.',
+      'Derajat kebebasan (DOF) = variabel - persamaan independen.',
+      'Reaksi kimia: gunakan konversi, yield, selektivitas.',
+      'Recycle, purge, dan bypass mengubah konversi overall vs single-pass.',
+    ],
+    formulas: [
+      Formula('Neraca massa umum', 'Masuk - Keluar + Generasi - Konsumsi = Akumulasi', 'Steady-state: Akumulasi = 0'),
+      Formula('Konversi', 'X = (F_A0 - F_A) / F_A0', 'Fraksi reaktan yang bereaksi'),
+      Formula('Neraca energi (terbuka)', 'dE/dt = Σ m_in·h_in - Σ m_out·h_out + Q - W_s', 'h = entalpi spesifik'),
+    ],
+  ),
+  Topic(
+    title: 'Termodinamika Teknik Kimia',
+    semester: 'Semester 3-4',
+    colorValue: 0xFFE53935,
+    summary:
+        'Sifat fluida, hukum termodinamika, kesetimbangan fasa dan kimia untuk analisis proses dan desain pemisahan.',
+    keyPoints: [
+      'Hukum I: kekekalan energi; Hukum II: arah proses dan entropi.',
+      'Persamaan keadaan (Van der Waals, Peng-Robinson) untuk gas nyata.',
+      'Kesetimbangan uap-cair: Hukum Raoult, koefisien aktivitas.',
+      'Kesetimbangan reaksi ditentukan oleh ΔG°.',
+    ],
+    formulas: [
+      Formula('Gas ideal', 'P·V = n·R·T', 'R = 8,314 J/mol·K'),
+      Formula('Hukum Raoult', 'y_i·P = x_i·P_i^sat', 'Larutan ideal'),
+      Formula('Energi Gibbs', 'ΔG = ΔH - T·ΔS', 'ΔG < 0: proses spontan'),
+      Formula('Konstanta kesetimbangan', 'ΔG° = -R·T·ln K', 'Hubungan ΔG° dan K'),
+    ],
+  ),
+  Topic(
+    title: 'Mekanika Fluida',
+    semester: 'Semester 3-4',
+    colorValue: 0xFF00ACC1,
+    summary:
+        'Aliran fluida dalam pipa, pompa, dan peralatan proses: statika, dinamika, kehilangan tekanan.',
+    keyPoints: [
+      'Aliran laminar bila Re < 2100, turbulen bila Re > 4000.',
+      'Faktor gesekan Fanning/Darcy bergantung pada Re dan kekasaran relatif.',
+      'Head pompa menutupi beda elevasi, tekanan, dan friksi.',
+      'Pengukuran aliran: orifice, venturi, pitot.',
+    ],
+    formulas: [
+      Formula('Bilangan Reynolds', 'Re = ρ·v·D / μ', 'Rasio gaya inersia dan viskos'),
+      Formula('Bernoulli', 'P/ρ + v²/2 + g·z = konstan', 'Tanpa friksi dan kerja poros'),
+      Formula('Hagen-Poiseuille', 'ΔP = 32·μ·L·v / D²', 'Aliran laminar dalam pipa'),
+      Formula('Darcy-Weisbach', 'h_f = f·(L/D)·(v²/2g)', 'Kehilangan head friksi'),
+    ],
+  ),
+  Topic(
+    title: 'Perpindahan Panas',
+    semester: 'Semester 4',
+    colorValue: 0xFFFB8C00,
+    summary:
+        'Mekanisme konduksi, konveksi, dan radiasi serta desain alat penukar panas (heat exchanger).',
+    keyPoints: [
+      'Konduksi: Hukum Fourier; konveksi: Hukum pendinginan Newton.',
+      'Koefisien overall U menggabungkan seluruh tahanan termal.',
+      'LMTD untuk desain; NTU-efektivitas bila suhu keluar tak diketahui.',
+      'Fouling menambah tahanan dan menurunkan kinerja.',
+    ],
+    formulas: [
+      Formula('Hukum Fourier', 'q = -k·A·(dT/dx)', 'Konduksi'),
+      Formula('Pendinginan Newton', 'q = h·A·(T_s - T_∞)', 'Konveksi'),
+      Formula('Stefan-Boltzmann', 'q = ε·σ·A·T⁴', 'σ = 5,67×10⁻⁸ W/m²·K⁴'),
+      Formula('Heat exchanger', 'Q = U·A·ΔT_lm', 'ΔT_lm = (ΔT1 - ΔT2) / ln(ΔT1/ΔT2)'),
+    ],
+  ),
+  Topic(
+    title: 'Perpindahan Massa',
+    semester: 'Semester 4-5',
+    colorValue: 0xFF8E24AA,
+    summary:
+        'Difusi dan konveksi massa sebagai dasar absorpsi, ekstraksi, humidifikasi, dan adsorpsi.',
+    keyPoints: [
+      'Gaya penggerak: gradien konsentrasi (atau potensial kimia).',
+      'Teori dua film untuk koefisien perpindahan massa overall.',
+      'Analogi Chilton-Colburn: panas, massa, momentum.',
+      'Bilangan tak berdimensi: Sh, Sc, Re.',
+    ],
+    formulas: [
+      Formula('Hukum Fick I', 'J_A = -D_AB·(dC_A/dz)', 'Difusi molekuler'),
+      Formula('Bilangan Schmidt', 'Sc = μ / (ρ·D_AB)', 'Rasio difusivitas momentum dan massa'),
+      Formula('Bilangan Sherwood', 'Sh = k_c·L / D_AB', 'Korelasi: Sh = f(Re, Sc)'),
+      Formula('Fluks konvektif', 'N_A = k_c·(C_A,s - C_A,∞)', 'Koefisien massa k_c'),
+    ],
+  ),
+  Topic(
+    title: 'Operasi Pemisahan (Distilasi)',
+    semester: 'Semester 5',
+    colorValue: 0xFF43A047,
+    summary:
+        'Pemisahan campuran berdasarkan volatilitas relatif: kolom distilasi, metode McCabe-Thiele, dan flash.',
+    keyPoints: [
+      'Volatilitas relatif α menentukan kemudahan pemisahan.',
+      'McCabe-Thiele: garis operasi, garis-q, dan tahap ideal.',
+      'Refluks minimum vs refluks total.',
+      'Efisiensi tray (Murphree) mengubah tahap ideal menjadi aktual.',
+    ],
+    formulas: [
+      Formula('Volatilitas relatif', 'α = (y_A/x_A) / (y_B/x_B)', 'α > 1 dapat dipisahkan'),
+      Formula('Garis operasi rectifying', 'y = (R/(R+1))·x + x_D/(R+1)', 'R = rasio refluks'),
+      Formula('Persamaan Fenske', 'N_min = ln[(x_D/(1-x_D))·((1-x_B)/x_B)] / ln α', 'Tahap minimum'),
+    ],
+  ),
+  Topic(
+    title: 'Kinetika & Reaktor Kimia',
+    semester: 'Semester 5-6',
+    colorValue: 0xFFD81B60,
+    summary:
+        'Laju reaksi, orde reaksi, dan desain reaktor ideal: Batch, CSTR, PFR, serta pengaruh suhu.',
+    keyPoints: [
+      'Hukum laju: -r_A = k·C_A^n; k bergantung suhu via Arrhenius.',
+      'PFR memberi volume lebih kecil dari CSTR untuk orde > 0.',
+      'Reaksi eksotermis memerlukan analisis stabilitas dan pendinginan.',
+      'Distribusi waktu tinggal (RTD) untuk reaktor nyata.',
+    ],
+    formulas: [
+      Formula('Persamaan Arrhenius', 'k = A·exp(-E_a / R·T)', 'E_a: energi aktivasi'),
+      Formula('Desain CSTR', 'V = F_A0·X / (-r_A)', 'Keluaran seragam'),
+      Formula('Desain PFR', 'V = F_A0 ∫ dX / (-r_A)', 'Integral 0 sampai X'),
+      Formula('Batch orde 1', 'ln(C_A0/C_A) = k·t', 'Waktu paruh t½ = ln2 / k'),
+    ],
+  ),
+  Topic(
+    title: 'Pengendalian Proses',
+    semester: 'Semester 6-7',
+    colorValue: 0xFF3949AB,
+    summary:
+        'Dinamika proses dan sistem kendali umpan balik untuk menjaga variabel proses pada setpoint.',
+    keyPoints: [
+      'Transformasi Laplace mengubah ODE menjadi aljabar.',
+      'Model orde satu dan orde dua dengan waktu mati.',
+      'Pengendali PID: aksi proporsional, integral, derivatif.',
+      'Stabilitas: kriteria Routh, Bode, Nyquist.',
+    ],
+    formulas: [
+      Formula('Fungsi alih orde 1', 'G(s) = K / (τ·s + 1)', 'K: gain, τ: konstanta waktu'),
+      Formula('Pengendali PID', 'u(t) = K_c[e + (1/τ_I)∫e dt + τ_D·de/dt]', 'Aksi P, I, D'),
+      Formula('Fungsi alih orde 2', 'G(s) = K / (τ²s² + 2ζτs + 1)', 'ζ: rasio redaman'),
+    ],
+  ),
+];
