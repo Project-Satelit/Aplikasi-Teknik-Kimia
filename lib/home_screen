@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import '../data/materi_data.dart';
+import 'detail_screen.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String query = '';
+
+  @override
+  Widget build(BuildContext context) {
+    final list = materi
+        .where((t) => t.title.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    return Scaffold(
+      appBar: AppBar(title: const Text('Teknik Kimia S1')),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: SearchBar(
+              hintText: 'Cari materi...',
+              leading: const Icon(Icons.search),
+              onChanged: (v) => setState(() => query = v),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              itemCount: list.length,
+              itemBuilder: (_, i) {
+                final t = list[i];
+                final color = Color(t.colorValue);
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: color,
+                      child: Text('${i + 1}',
+                          style: const TextStyle(color: Colors.white)),
+                    ),
+                    title: Text(t.title,
+                        style: const TextStyle(fontWeight: FontWeight.w600)),
+                    subtitle: Text('${t.semester} • ${t.formulas.length} rumus'),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => DetailScreen(topic: t)),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
