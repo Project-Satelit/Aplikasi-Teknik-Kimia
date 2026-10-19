@@ -1,0 +1,25 @@
+import 'package:home_widget/home_widget.dart';
+import '../data/materi_data.dart';
+import '../models/topic.dart';
+
+class WidgetService {
+  static const _androidName = 'ChemWidgetProvider';
+
+  /// Kirim satu rumus ke widget Android.
+  static Future<void> push(Topic t, Formula f) async {
+    await HomeWidget.saveWidgetData<String>('title', t.title);
+    await HomeWidget.saveWidgetData<String>('formula_name', f.name);
+    await HomeWidget.saveWidgetData<String>('formula', f.expr);
+    await HomeWidget.saveWidgetData<String>('note', f.note);
+    await HomeWidget.updateWidget(androidName: _androidName);
+  }
+
+  /// Pilih rumus berbeda setiap hari.
+  static Future<void> updateDaily() async {
+    final now = DateTime.now();
+    final day = now.difference(DateTime(now.year, 1, 1)).inDays;
+    final t = materi[day % materi.length];
+    final f = t.formulas[day % t.formulas.length];
+    await push(t, f);
+  }
+}
