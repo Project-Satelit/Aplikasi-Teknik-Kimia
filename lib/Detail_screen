@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+import '../models/topic.dart';
+import '../services/widget_service.dart';
+
+class DetailScreen extends StatelessWidget {
+  final Topic topic;
+  const DetailScreen({super.key, required this.topic});
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Color(topic.colorValue);
+    return Scaffold(
+      appBar: AppBar(title: Text(topic.title), backgroundColor: color,
+          foregroundColor: Colors.white),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          Text(topic.summary, style: Theme.of(context).textTheme.bodyLarge),
+          const SizedBox(height: 20),
+          Text('Poin Penting',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold, color: color)),
+          for (final p in topic.keyPoints)
+            ListTile(
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(Icons.check_circle, color: color, size: 20),
+              title: Text(p),
+            ),
+          const SizedBox(height: 12),
+          Text('Rumus Utama',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold, color: color)),
+          for (final f in topic.formulas)
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(f.name,
+                              style: const TextStyle(fontWeight: FontWeight.w600)),
+                          const SizedBox(height: 6),
+                          SelectableText(f.expr,
+                              style: const TextStyle(
+                                  fontFamily: 'monospace', fontSize: 15)),
+                          const SizedBox(height: 4),
+                          Text(f.note,
+                              style: Theme.of(context).textTheme.bodySmall),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      tooltip: 'Tampilkan di widget',
+                      icon: const Icon(Icons.widgets_outlined),
+                      onPressed: () async {
+                        await WidgetService.push(topic, f);
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Widget diperbarui')),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
